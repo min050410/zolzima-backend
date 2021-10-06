@@ -11,3 +11,12 @@ class Todo(db.Model):
 	subject = db.relationship('Subject', backref=db.backref('todo_set'))
 	content = db.Column(db.Text(), nullable=False)
 	create_date = db.Column(db.DateTime(), nullable=False)
+ 
+class Timer(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	time = db.Column(db.Integer, nullable=False)
+	user = db.relationship('User', backref=db.backref('user_set'))
+	
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(150), unique=True, nullable=False)
