@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href={{ url_for('static',filename='bootstrap.min.css')}}>
-    <title>Document</title>
+    <link rel="stylesheet" href={{ url_for('static',filename='bootstrap.min.css' )}}>
+    <title>journal</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='ajax.js')}}"></script>
 </head>
 
 <body>
@@ -29,12 +31,26 @@
             </ul>
         </div>
     </nav>
+    {% if clicked %}
+    <h1>{{clicked}}</h1>
+    {% endif %}
+    {% if todo_list %}
     <div>
         <ul>
-            <li>일지 기록 1</li>
-        </ul>
+            {% for subject in todo_list %}
 
+            <li>{{ subject.subject }}</li>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p> 빈 값입니다. </p>
+        {% endif %}
     </div>
+    <div>
+        <button type="button" class="btn">ajax 보내기</button>
+    </div>
+
 </body>
 
 </html>
