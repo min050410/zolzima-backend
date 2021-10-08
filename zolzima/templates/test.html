@@ -1,42 +1,44 @@
 <html>
+
 <head>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+
 <body>
     <p id="example">AJAX</p>
-    <input type="text" id="id1" placeholder="id">
-    <input type="text" id="password1" placeholder="password">
-    <input type="text" id="email1" placeholder="email">
+    <input type="text" id="subject" placeholder="sub">
+    <input type="text" id="content" placeholder="con">
     <input type="button" id="execute" value="execute">
-    
-    
+
+
     <script>
-    
-         $('#execute').click(function(){
-            var id = $('#id1').val();
-            var password = $('#password1').val();
-            var email = $('#email1').val();
+
+        $('#execute').on('click', function () {
+            var subject = $('#subject').val();
+            var content = $('#content').val();
+
 
             var postdata = {
-                'id':id, 'password':password, 'email':email
+                'subject': subject, 'content': content
             }
             $.ajax({
                 type: 'POST',
-                url: '/test',
+                url: '/tst',
                 data: JSON.stringify(postdata),
-                dataType : 'JSON',
+                dataType: 'JSON',
                 contentType: "application/json",
-                success: function(data){
-                    alert('성공! 데이터 값:' + data.result2['id']+" " + data.result2['password']+ " " + data.result2['email'])
+                success: function (data) {
+                    alert('성공! 데이터 값:' + data.result2['subject'] + " " + data.result2['content'])
                 },
-                error: function(request, status, error){
+                error: function (request, status, error) {
                     alert('ajax 통신 실패')
                     alert(error);
                 }
             })
         })
     </script>
-    
-    
+
+
 </body>
+
 </html>

@@ -14,6 +14,7 @@ class Todo(db.Model):
  
 class Timer(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	timer_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
 	time = db.Column(db.Integer, nullable=False)
 	user = db.relationship('User', backref=db.backref('user_set'))
 	

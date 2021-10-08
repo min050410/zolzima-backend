@@ -10,20 +10,30 @@ def timer():
 
 @bp.route('/journal', methods=['GET', 'POST'])
 def journal():
-  clicked = None
+  #clicked = None
   todo_list = Subject.query.order_by(Subject.create_date.desc())
-  if request.method == "POST":
-    clicked = request.json['data']
-    print(clicked)
-  return render_template('journal.html', todo_list = todo_list, clicked=clicked)
+  #if request.method == "POST":
+  #  clicked = request.json['data']
+  #  print(clicked)
+  return render_template('journal.html', todo_list = todo_list)
 
 @bp.route('/rank')
 def rank():
-	return render_template('test.html')
+	return render_template('rank.html')
 
-@bp.route('/test', methods=['GET', 'POST'])
+@bp.route('/test')
 def test():
-    data = request.get_json()
-    print(data)
-
-    return jsonify(result = "success", result2= data)
+	return render_template('test.html')
+	
+@bp.route('/tst', methods=['GET', 'POST'])
+def tst():
+  data = request.get_json()
+  print(data)
+  return jsonify(result = "success", result2 =data)
+    
+@bp.route('/study', methods=['GET', 'POST'])
+def study():
+	data = request.get_json()
+	print(data)
+	return jsonify(result = "success", re2 = data)
+	
