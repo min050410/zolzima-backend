@@ -42,7 +42,7 @@
         <ul>
             {% for subject in todo_list %}
 
-            <li>{{ subject.subject }}</li>
+            <li><a href="{{url_for('main.detail', todo_id = subject.id )}}">{{ subject.subject }}</a></li>
 
             {% endfor %}
         </ul>

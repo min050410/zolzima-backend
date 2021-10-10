@@ -1,6 +1,10 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, url_for
 
-from zolzima.models import Subject
+from zolzima.models import Subject, Todo
+
+from zolzima.forms import TodoForm
+
+from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -36,4 +40,12 @@ def study():
 	data = request.get_json()
 	print(data)
 	return jsonify(result = "success", re2 = data)
-	
+
+@bp.route('/detail/<int:todo_id>/')
+def detail(todo_id):
+	form = TodoForm()
+	todo = Todo.query.get_or_404(todo_id) #이거 하면은 찾을수 없는 경우에 404가 된다!
+	return render_template('detail.html', todo = todo, form = form)
+@bp.route('/t/')
+def t():
+	return render_template('t.html')
