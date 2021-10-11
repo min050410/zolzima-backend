@@ -52,7 +52,15 @@
     display: flex;
     flex-direction: row;
 }
-
 .current {
     display: flex;
+}
+/* p#currenttime {
+    font-size: xx-large;
+} */
+.fa fa-play{
+    font-size: 4vh;
+}
+.fa fa-pause{
+    font-size: 4vh;
 }

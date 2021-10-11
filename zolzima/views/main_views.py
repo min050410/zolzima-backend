@@ -84,3 +84,7 @@ def t():
 		return str(current)
 	else: 
 		return
+   
+@bp.route('/ginon')
+def ginon():
+	return render_template('ginon.html')

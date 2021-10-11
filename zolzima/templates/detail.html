@@ -1,29 +1,126 @@
-<h1> {{ todo.subject.subject }} </h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<div>
-  {{ todo.content }}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css')}}">
+  <title>signup</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='mobile.css')}}" media='all'>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<!-- header -->
+
+<header class="site-header" id="site-header">
+  <a id="skip-nav" class="skip-nav screen-reader-text" href="#maincontent">Skip to main content</a>
+  <div class="logo">
+    <a href={{url_for('main.timer')}}>
+      <img src="{{url_for('static',filename='logo.png')}}" alt="logo">
+    </a>
+  </div>
+  <div class="header-middle-area">
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li class="journal">
+          <a href={{url_for('main.journal')}}>
+            <span>일지</span>
+          </a>
+        </li>
+        <li class="rank">
+          <a href={{url_for('main.rank')}}>
+            <span>순위</span>
+          </a>
+        </li>
+        <li class="test">
+          <a href={{url_for('main.test')}}>
+            <span>테스트</span>
+          </a>
+        </li>
+
+
+      </ul>
+    </nav>
+    <div class="search-and-account">
+      <a href={{url_for('main.ginon')}} class="jetpack-search-filter__link">
+        <span class="screen-reader-text">Search</span>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15.0726 10.4326C12.4801 10.4326 10.4 12.5451 10.4 15.1053C10.4 17.6978 12.5125 19.7779 15.0726 19.7779C17.6651 19.7779 19.7453 17.6654 19.7453 15.1053C19.744 12.544 17.664 10.4326 15.0726 10.4326Z"
+            fill="white" />
+          <path
+            d="M16.0327 0.447479C7.42401 0.447479 0.447693 7.4238 0.447693 16.0324C0.447693 24.6398 7.42401 31.6161 16.0314 31.6161C24.64 31.6161 31.6163 24.6398 31.6163 16.0324C31.6163 7.4238 24.64 0.447479 16.0327 0.447479ZM23.6163 24.0324C23.3926 24.2562 23.0401 24.385 22.6563 24.385C22.2726 24.385 21.9526 24.2575 21.6963 24.0324L18.7526 21.0887L18.4651 21.2487C17.4088 21.825 16.2576 22.145 15.0724 22.145C11.1998 22.145 8.06509 19.0087 8.06509 15.1376C8.06509 11.265 11.2013 8.13023 15.0724 8.13023C18.9451 8.13023 22.0798 11.2665 22.0798 15.1376C22.0798 16.5138 21.6961 17.8251 20.9273 18.9776L20.7348 19.2976L23.6473 22.2101C23.8711 22.4664 24.0311 22.7864 24.0311 23.1376C23.9998 23.4563 23.8723 23.7763 23.616 24.0326L23.6163 24.0324Z"
+            fill="white" />
+        </svg>
+      </a>
+      <a href={{url_for('auth.login')}}>
+        <span class="screen-reader-text">Account</span>
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17 1.7C11.5335 1.7 6.48243 4.61655 3.74917 9.35C1.0172 14.0835 1.0172 19.9165 3.74917 24.65C6.48246 29.3835 11.5335 32.3 17 32.3C20.4918 32.3133 23.8809 31.1193 26.5917 28.9199C29.9014 26.2557 31.9559 22.3365 32.2602 18.0984C32.5657 13.8603 31.0954 9.68748 28.2003 6.57682C25.3063 3.46636 21.249 1.69986 17.0003 1.69986L17 1.7ZM27.9956 24.411C27.2651 22.1412 25.014 20.2514 21.9925 19.2447C20.7069 20.6405 18.8967 21.4361 17 21.4361C15.1021 21.4347 13.292 20.6405 12.0074 19.2447C8.98463 20.2514 6.73335 22.1413 6.00439 24.411C4.20212 21.7388 3.43579 18.5008 3.8475 15.3041C4.25921 12.1073 5.82242 9.17082 8.24234 7.04174C10.6622 4.91276 13.7752 3.7387 16.9987 3.7387C20.2221 3.7387 23.3353 4.91276 25.7564 7.04041C28.1763 9.16939 29.7395 12.1057 30.1513 15.3027C30.563 18.4995 29.7966 21.7376 27.9957 24.411L27.9956 24.411Z"
+            fill="white" />
+          <path
+            d="M22.5049 13.6092C22.5049 16.9919 20.0399 19.736 17 19.736C13.9586 19.736 11.4937 16.9921 11.4937 13.6092C11.4937 10.2251 13.9587 7.48236 17 7.48236C20.0401 7.48236 22.5049 10.2249 22.5049 13.6092Z"
+            fill="white" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<h5 style="text-align: center;">{{ todo.subject.todo_set|length }}개의 목록</h5>
+
+<!--시작-->
+<div class="articles-and-sidebar">
+  <div>
+    <div class="article-grid newsletter-card-grid">
+      <article class="article-card " id="post-353154">
+        <div class="article-thumbnail-wrap">
+        </div>
+        <div class="article-article">
+          <header class="article-publication-meta">
+          </header>
+          <h2>
+            {{ todo.subject.subject }}
+          </h2>
+          <div class="card-content">
+            {% for todo in todo.subject.todo_set %}
+            <p>{{ todo.content }} </p>
+            {% endfor %}
+
+          </div>
+
+          <div class="author-row">
+            <div>
+              <time datetime="">
+                Oct 4, 2021 </time>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+  </div>
 </div>
 
-<h5>{{ todo.subject.todo_set|length }}개의 목록</h5>
-<div>
-  <ul>
-  {% for todo in todo.subject.todo_set %}
-    <li>{{ todo.content }} </li>
-  {% endfor %}
-  </ul>
-</div>
 
 <form action="{{ url_for('todo.create', todo_id=todo.id) }}" method="post" class="my-3">
-        {{ form.csrf_token }}
-        <!-- 오류표시 Start -->
-        {% for field, errors in form.errors.items() %}
-        <div class="alert alert-danger" role="alert">
-            <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
-        </div>
-        {% endfor %}
-        <!-- 오류표시 End -->
-        <div class="form-group">
-            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
-        </div>
-        <input type="submit" value="답변등록" class="btn btn-primary">
+  {{ form.csrf_token }}
+  <!-- 오류표시 Start -->
+  {% for field, errors in form.errors.items() %}
+  <div class="alert alert-danger" role="alert">
+    <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
+  </div>
+  {% endfor %}
+  <!-- 오류표시 End -->
+  <div class="form-group">
+    <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+  </div>
+  <input type="submit" value="일지등록" class="btn btn-primary">
 </form>
+</body>
+
+</html>
