@@ -1,11 +1,14 @@
-from flask import Blueprint, render_template, request, jsonify, url_for
-
-from zolzima.models import Subject, Todo
+from flask import Blueprint, render_template, request, jsonify, url_for, session, g
+from zolzima import db
+from zolzima.models import Subject, Todo, Timer
 
 from zolzima.forms import TodoForm
 
 from werkzeug.utils import redirect
 
+def sum(n):
+	return Timer.query.get(n).time
+ 
 bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/')
@@ -29,17 +32,29 @@ def rank():
 def test():
 	return render_template('test.html')
 	
-@bp.route('/tst', methods=['GET', 'POST'])
-def tst():
-  data = request.get_json()
-  print(data)
-  return jsonify(result = "success", result2 =data)
+#@bp.route('/tst', methods=['GET', 'POST'])
+#def tst():
+#data = request.get_json()
+#data = int(data)
+#count = Timer.query.count()
+#sum = sum(count)	
+#time = Timer(time = data + sum)
+#db.session.add(time)
+#db.session.commit()
+#return jsonify(result = "success", result2 = Timer.query.get(count+1))
     
 @bp.route('/study', methods=['GET', 'POST'])
 def study():
 	data = request.get_json()
-	print(data)
-	return jsonify(result = "success", re2 = data)
+	data = int(data)
+	count = Timer.query.count()
+	Alltime = sum(count)
+	time = Timer(user=g.user, time = data + Alltime) #이렇게 유저 추가하면 간편
+	db.session.add(time)
+	db.session.commit()
+	recentTime = Timer.query.get(count+1).time
+	return str(recentTime)
+
 
 @bp.route('/detail/<int:todo_id>/')
 def detail(todo_id):

@@ -61,9 +61,9 @@ function buttonEvt() {
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(time),
-        dataType: 'JSON',
+        dataType: 'text',
         success: function (data) {
-          alert('성공! 데이터 값:' + data.result + " " + data.re2)
+          alert('성공! 데이터 값:' + data)
         },
         error: function (request, status, error) {
           alert('ajax 통신 실패')
