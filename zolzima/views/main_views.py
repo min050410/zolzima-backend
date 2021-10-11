@@ -6,11 +6,11 @@ from zolzima.forms import TodoForm
 
 from werkzeug.utils import redirect
 
-def sum(n):
+def sum(n): #가장 최근의 같은 유저 타이머를 찾앙주는 함수
   for i in range(n,1,-1):
-    if Timer.query.get(n).user:
-      if Timer.query.get(n).user.username == g.user.username: 
-        return Timer.query.get(n).time
+    if Timer.query.get(i).user:
+      if Timer.query.get(i).user.username == g.user.username: 
+        return Timer.query.get(i).time
     else:
       continue
     if(i == 1):
@@ -55,14 +55,17 @@ def study(): #g.user 인경우 실행이 필요함.
 	data = request.get_json()
 	data = int(data)
 	count = Timer.query.count()
-	Alltime = sum(count)
-	if Alltime is None:
-		Alltime = 0
-	time = Timer(time = data + Alltime, user=g.user)
-	db.session.add(time)
-	db.session.commit()
-	recentTime = Timer.query.get(count+1).time
-	return str(recentTime)
+	if g.user:
+		Alltime = sum(count)
+		if Alltime is None:
+			Alltime = 0
+		time = Timer(time = data + Alltime, user=g.user)
+		db.session.add(time)
+		db.session.commit()
+		recentTime = Timer.query.get(count+1).time
+		return str(recentTime)
+	else:
+		return
 
 
 @bp.route('/detail/<int:todo_id>/')
@@ -70,6 +73,14 @@ def detail(todo_id):
 	form = TodoForm()
 	todo = Todo.query.get_or_404(todo_id) #이거 하면은 찾을수 없는 경우에 404가 된다!
 	return render_template('detail.html', todo = todo, form = form)
-@bp.route('/t/')
+
+@bp.route('/current', methods=['GET'])
 def t():
-	return render_template('t.html')
+	count = Timer.query.count()
+	if g.user:
+		current=sum(count)
+		if current is None:
+			current = 0
+		return str(current)
+	else: 
+		return
