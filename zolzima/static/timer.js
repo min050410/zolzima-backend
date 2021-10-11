@@ -64,7 +64,27 @@ function buttonEvt() {
         dataType: 'text',
         success: function (data) {
           alert('성공! 데이터 값:' + data)
-        },
+          data *= 1;
+          min = Math.floor(data / 60);
+          hour = Math.floor(min / 60);
+          sec = data % 60;
+          min = min % 60;
+
+          var th = hour;
+          var tm = min;
+          var ts = sec;
+          if (th < 10) {
+            th = "0" + hour;
+          }
+          if (tm < 10) {
+            tm = "0" + min;
+          }
+          if (ts < 10) {
+            ts = "0" + sec;
+          }
+
+          document.getElementById("currenttime").innerHTML ="님의 현재 공부시간은 " + th + ":" + tm + ":" + ts+ " 입니다";
+          },
         error: function (request, status, error) {
           alert('ajax 통신 실패')
           alert(error);

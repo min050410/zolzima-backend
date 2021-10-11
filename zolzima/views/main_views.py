@@ -1,13 +1,20 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, session, g
 from zolzima import db
-from zolzima.models import Subject, Todo, Timer
+from zolzima.models import Subject, Todo, Timer, User
 
 from zolzima.forms import TodoForm
 
 from werkzeug.utils import redirect
 
 def sum(n):
-	return Timer.query.get(n).time
+  for i in range(n,1,-1):
+    if Timer.query.get(n).user:
+      if Timer.query.get(n).user.username == g.user.username: 
+        return Timer.query.get(n).time
+    else:
+      continue
+    if(i == 1):
+      return 0
  
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -44,12 +51,14 @@ def test():
 #return jsonify(result = "success", result2 = Timer.query.get(count+1))
     
 @bp.route('/study', methods=['GET', 'POST'])
-def study():
+def study(): #g.user 인경우 실행이 필요함.
 	data = request.get_json()
 	data = int(data)
 	count = Timer.query.count()
 	Alltime = sum(count)
-	time = Timer(user=g.user, time = data + Alltime) #이렇게 유저 추가하면 간편
+	if Alltime is None:
+		Alltime = 0
+	time = Timer(time = data + Alltime, user=g.user)
 	db.session.add(time)
 	db.session.commit()
 	recentTime = Timer.query.get(count+1).time
