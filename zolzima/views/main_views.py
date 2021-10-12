@@ -6,7 +6,9 @@ from zolzima.forms import TodoForm
 
 from werkzeug.utils import redirect
 
-def sum(n): #가장 최근의 같은 유저 타이머를 찾앙주는 함수
+import operator
+
+def sum(n): #가장 최근의 같은 유저 타이머를 찾아주는 함수
   for i in range(n,1,-1):
     if Timer.query.get(i).user:
       if Timer.query.get(i).user.username == g.user.username: 
@@ -15,7 +17,17 @@ def sum(n): #가장 최근의 같은 유저 타이머를 찾앙주는 함수
       continue
     if(i == 1):
       return 0
- 
+
+def rank(n, k):
+  for i in range(n,1,-1):
+    if Timer.query.get(i).user:
+      if Timer.query.get(i).user.username == k: 
+        return Timer.query.get(i).time
+    else:
+      continue
+    if(i == 1):
+      return 0
+      
 bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/')
@@ -24,11 +36,9 @@ def timer():
 
 @bp.route('/journal', methods=['GET', 'POST'])
 def journal():
-  #clicked = None
+  
   todo_list = Subject.query.order_by(Subject.create_date.desc())
-  #if request.method == "POST":
-  #  clicked = request.json['data']
-  #  print(clicked)
+  
   return render_template('journal.html', todo_list = todo_list)
 
 @bp.route('/rank')
@@ -88,3 +98,20 @@ def t():
 @bp.route('/ginon')
 def ginon():
 	return render_template('ginon.html')
+ 
+@bp.route('/rankdata', methods=['GET', 'POST'])
+def rankdata():
+  count = Timer.query.count()
+  usercount = User.query.count()
+  Userlist = []
+  for i in range(usercount+1):
+    Userlist.append(User.query.get_or_404(i).username)
+  CurrentTime = {}
+  for i, j in Userlist, range(1, 10):
+    CurrentTime[i] = rank(count, i)
+    if j == 10:
+      break
+  Currenttime = sorted(CurrentTime.items(), key=operator.itemgetter(1), reverse = True)[:10] #딕셔너리 정렬
+  #Currenttime = sorted(Currenttime, key = lambda x : dict[x], reverse=True)
+  return Currenttime 
+    
