@@ -72,7 +72,7 @@
     </header>
 
     <div class="container my-3">
-        <form method="post" class="post-form">
+        <form method="post" class="post-form" autocomplete="off">
             {{ form.csrf_token }}
             {% include "form_errors.html" %}
             <div class="form-group">

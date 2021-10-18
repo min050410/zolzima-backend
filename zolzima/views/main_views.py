@@ -8,6 +8,8 @@ from werkzeug.utils import redirect
 
 import operator
 
+import json
+
 def sum(n): #가장 최근의 같은 유저 타이머를 찾아주는 함수
   for i in range(n,1,-1):
     if Timer.query.get(i).user:
@@ -18,7 +20,7 @@ def sum(n): #가장 최근의 같은 유저 타이머를 찾아주는 함수
     if(i == 1):
       return 0
 
-def rank(n, k):
+def ranktime(n, k):
   for i in range(n,1,-1):
     if Timer.query.get(i).user:
       if Timer.query.get(i).user.username == k: 
@@ -99,19 +101,33 @@ def t():
 def ginon():
 	return render_template('ginon.html')
  
-@bp.route('/rankdata', methods=['GET', 'POST'])
+ 
+@bp.route('/rankdata', methods=['GET']) # return 은 됨 
 def rankdata():
-  count = Timer.query.count()
-  usercount = User.query.count()
-  Userlist = []
-  for i in range(usercount+1):
-    Userlist.append(User.query.get_or_404(i).username)
-  CurrentTime = {}
-  for i, j in Userlist, range(1, 10):
-    CurrentTime[i] = rank(count, i)
-    if j == 10:
-      break
-  Currenttime = sorted(CurrentTime.items(), key=operator.itemgetter(1), reverse = True)[:10] #딕셔너리 정렬
-  #Currenttime = sorted(Currenttime, key = lambda x : dict[x], reverse=True)
-  return Currenttime 
+	count = Timer.query.count()
+	usercount = User.query.count()
+	Userlist = []
+	UserTime = []
+	for i in range(1,usercount+1):
+		Userlist.append(User.query.get(i).username)
+	CurrentTime = {}
+	for i in Userlist:
+		UserTime.append(ranktime(count, i))
+		CurrentTime[i] = ranktime(count, i)
+	CurrentTime=sorted(CurrentTime.items() ,key = operator.itemgetter(1), reverse = True)
+  #json_val = json.dumps(CurrentTime)
+	return str(CurrentTime)  	
+ 
+ 
+ 
+#if j == 10:
+#break
+#Currenttime = sorted(CurrentTime.items(), key=operator.itemgetter(1), reverse = True)[:10] #딕셔너리 정렬
+#Currenttime = str(Currenttime)
+#if Currenttime == None:
+#return "생성된 유저가 없습니다."
+	#string_Usertime = [str(i) for i in UserTime]
+	#string_Usertime = ''.join(string_Usertime)
+	#string_Usertime = str(string_Usertime) 
+	#return string_Usertime
     

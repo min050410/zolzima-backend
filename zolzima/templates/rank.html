@@ -73,18 +73,77 @@
             </div>
         </div>
     </header>
-    <div id="ranking">
-    </div>
-    
-    <ul>
-      
-        <li>1. 위는 누구누구</li>
-        <li>2. 위는 누구누구</li>
-        <li>3. 위는 누구누구</li>
-        <li>4. 위는 누구누구</li>
-        <li>5. 위는 누구누구</li>
-        <li>6. 위는 누구누구</li>
-    </ul>
+    <!-- <div id="ranking">
+    </div> -->
+
+    <div class="page-wrap">
+        <main id="post-249427">
+            <header class="mega-header">
+                {% if g.user %}
+                <h1 class="page-title">{{ g.user.username }}</h1>
+                <p id="currenttime" class="time">님의 오늘의 공부 시간은 00:00:00입니다.
+                </p>
+                {% else %}
+                <h1>로그인 해주세요</h1>
+                <!-- <p id="currenttime" class="time">로그인 후 기록을 볼 수 있습니다.
+                </p> -->
+                {% endif %}
+
+                <!--폼-->
+
+                <div class="footer-form-wrap">
+                    <!--추후 데이터 추가-->
+                    <form method="post" id="mc-embedded-subscribe-form">
+                        <div class="footer-form">
+                            <label for="mce-EMAIL" class="screen-reader">Email else</label>
+                            <input type="text" name="text" id="mce-EMAIL" placeholder="랭크 유저 검색" required=""
+                                autocomplete="off">
+                            <input type="submit" value="검색" name="검색" id="mc-embedded-subscribe"
+                                class="button subscribe-button">
+                        </div>
+                    </form>
+                </div>
+            </header>
+            <div style="display:none">
+                <a id="finda">click</a>
+                <!--js-->
+            </div>
+
+            <!-- 서버 순위 목록 for문 -->
+            <div class="articles-and-sidebar">
+                <div>
+                    <div class="article-grid newsletter-card-grid">
+                        <article class="article-card " id="post-353154">
+                            <div class="article-thumbnail-wrap">
+                            </div>
+                            <div class="article-article">
+                                <header class="article-publication-meta">
+                                </header>
+                                <div class="tenhour">
+                                    <h2>
+                                        <div id="time" class="time">RANK 1
+                                        </div>
+                                    </h2>
+                                    <div>
+
+                                        <p> &nbsp&nbsp: &nbsp&nbsp총 10 시간 공부함</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3>min050410</h3>
+                                </div>
+                                <div class="author-row">
+                                    <div>
+                                        <time datetime="">
+                                            오늘 잠 못잠 </time> <!-- datetime 넣기 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <!-- 서버 순위 목록 forend문 -->
 
 
 </body>

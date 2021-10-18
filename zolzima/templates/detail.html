@@ -107,7 +107,7 @@
 </div>
 
 
-<form action="{{ url_for('todo.create', todo_id=todo.id) }}" method="post" class="my-3">
+<form action="{{ url_for('todo.create', todo_id=todo.id) }}" method="post" class="my-3" autocomplete="off">
   {{ form.csrf_token }}
   <!-- 오류표시 Start -->
   {% for field, errors in form.errors.items() %}
