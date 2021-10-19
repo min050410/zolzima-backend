@@ -115,19 +115,9 @@ def rankdata():
 		UserTime.append(ranktime(count, i))
 		CurrentTime[i] = ranktime(count, i)
 	CurrentTime=sorted(CurrentTime.items() ,key = operator.itemgetter(1), reverse = True)
-  #json_val = json.dumps(CurrentTime)
-	return str(CurrentTime)  	
+	json_val = json.dumps(CurrentTime)
+	return json_val  	
  
  
  
-#if j == 10:
-#break
-#Currenttime = sorted(CurrentTime.items(), key=operator.itemgetter(1), reverse = True)[:10] #딕셔너리 정렬
-#Currenttime = str(Currenttime)
-#if Currenttime == None:
-#return "생성된 유저가 없습니다."
-	#string_Usertime = [str(i) for i in UserTime]
-	#string_Usertime = ''.join(string_Usertime)
-	#string_Usertime = str(string_Usertime) 
-	#return string_Usertime
-    
+
