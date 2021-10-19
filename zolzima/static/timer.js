@@ -112,6 +112,8 @@ function buttonEvt() {
           }
 
           document.getElementById("currenttime").innerHTML = "님의 총 공부시간은 " + th + ":" + tm + ":" + ts + " 입니다";
+          time = 0;
+          
         },
         error: function (request, status, error) {
           alert('로그인 해 주세요 ㅠㅠ')
