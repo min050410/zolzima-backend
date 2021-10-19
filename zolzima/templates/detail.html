@@ -70,7 +70,7 @@
   </div>
 </header>
 
-<h5 style="text-align: center;">{{ todo.subject.todo_set|length }}개의 목록</h5>
+<h5 style="text-align: center;">{{ todo|length }}개의 목록</h5>
 
 <!--시작-->
 <div class="articles-and-sidebar">
@@ -83,11 +83,11 @@
           <header class="article-publication-meta">
           </header>
           <h2>
-            {{ todo.subject.subject }}
+            수학
           </h2>
           <div class="card-content">
-            {% for todo in todo.subject.todo_set %}
-            <p>{{ todo.content }} </p>
+            {% for todos in todo %}
+            <p>{{ todos.content }} </p>
             {% endfor %}
 
           </div>
@@ -107,7 +107,7 @@
 </div>
 
 
-<form action="{{ url_for('todo.create', todo_id=todo.id) }}" method="post" class="my-3" autocomplete="off">
+<form action="{{ url_for('todo.create', todo_id=1 ) }}" method="post" class="my-3" autocomplete="off"> <!--일단 1로 넣음-->
   {{ form.csrf_token }}
   <!-- 오류표시 Start -->
   {% for field, errors in form.errors.items() %}

@@ -113,9 +113,11 @@
             <div>
                 <ul>
                     {% for subject in todo_list %}
-
-                    <li><a href="{{url_for('main.detail', todo_id = subject.id )}}"><button type="button" class="btn">{{ subject.subject }}</button></a></li>
-
+                    {% if g.user %}
+                    <li><a href="{{url_for('main.detail', todo_id = subject.id, todo_Userid = g.user.id )}}"><button type="button" class="btn">{{ subject.subject }}</button></a></li>
+                    {% else %}
+                    <li><a href="#"><button type="button" class="btn">일지 기능을 사용하려면 로그인이 필요합니다.</button></a></li>
+                    {% endif %}
                     {% endfor %}
                 </ul>
                 {% else %}

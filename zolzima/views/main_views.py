@@ -29,7 +29,9 @@ def ranktime(n, k):
       continue
     if(i == 1):
       return 0
-      
+
+
+
 bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/')
@@ -80,11 +82,25 @@ def study(): #g.user 인경우 실행이 필요함.
 		return
 
 
-@bp.route('/detail/<int:todo_id>/')
-def detail(todo_id):
+@bp.route('/detail/<int:todo_id>/<int:todo_Userid>')
+def detail(todo_id, todo_Userid):
 	form = TodoForm()
-	todo = Todo.query.get_or_404(todo_id) #이거 하면은 찾을수 없는 경우에 404가 된다!
+     #Question.query.filter(Question.subject.like('%플라스크%')).all()
+	count = Todo.query.count()
+	for i in range(1,count):
+		if Todo.query.get(i+1).user:
+			if Todo.query.get(i+1).user.username == g.user.username:
+				todo = Todo.query.get(i+1)
+				break
+			else: 
+				continue
+	q=User.query.get(g.user.id)
+	todo = q.user_set2
+ 
+    #todo = Todo.query.filter(Todo.user.id==g.user.id) #이거 하면은 찾을수 없는 경우에 404가 된다!
+    #todoUser = Todo.query.get_or_404(todo_Userid)
 	return render_template('detail.html', todo = todo, form = form)
+    
 
 @bp.route('/current', methods=['GET'])
 def t():
