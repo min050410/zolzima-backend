@@ -25,10 +25,11 @@ def ranktime(n, k):
     if Timer.query.get(i).user:
       if Timer.query.get(i).user.username == k: 
         return Timer.query.get(i).time
+    elif(i == 1):
+      return 1
     else:
       continue
-    if(i == 1):
-      return 0
+    
 
 
 
@@ -96,6 +97,8 @@ def detail(todo_id, todo_Userid):
 				continue
 	q=User.query.get(g.user.id)
 	todo = q.user_set2
+   
+      
  
     #todo = Todo.query.filter(Todo.user.id==g.user.id) #이거 하면은 찾을수 없는 경우에 404가 된다!
     #todoUser = Todo.query.get_or_404(todo_Userid)
@@ -130,6 +133,9 @@ def rankdata():
 	for i in Userlist:
 		UserTime.append(ranktime(count, i))
 		CurrentTime[i] = ranktime(count, i)
+	for j, i in CurrentTime.items():
+		if(i==None):
+			CurrentTime[j] = 0
 	CurrentTime=sorted(CurrentTime.items() ,key = operator.itemgetter(1), reverse = True)
 	json_val = json.dumps(CurrentTime)
 	return json_val  	
