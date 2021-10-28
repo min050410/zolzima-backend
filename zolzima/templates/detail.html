@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='mobile.css')}}" media='all'>
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{url_for('static',filename='detail.js')}}"></script>
 </head>
 
 <!-- header -->
@@ -107,7 +109,8 @@
 </div>
 
 
-<form action="{{ url_for('todo.create', todo_id=1 ) }}" method="post" class="my-3" autocomplete="off"> <!--일단 1로 넣음-->
+<form action="{{ url_for('todo.create', todo_id=1 ) }}" method="post" class="my-3" autocomplete="off">
+  <!--일단 1로 넣음-->
   {{ form.csrf_token }}
   <!-- 오류표시 Start -->
   {% for field, errors in form.errors.items() %}

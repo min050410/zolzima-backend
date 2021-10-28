@@ -1,0 +1,57 @@
+.tenhour{
+    display:flex;
+}
+.zinan{
+    position: fixed;
+    top: 0;
+    margin-top: 10px;
+    border-radius: 10px;
+    height: 8vh;
+    /* opacity: 0.5; */
+    background: rgb(173 173 173);
+    position: relative;
+    width: 100%;
+
+}
+.zinantext{
+    display: flex;
+    color: white;
+    position: absolute;
+    margin-top: 0.8em;
+    flex-direction: row;
+    align-content: center;
+    margin-left: 2em;
+    font-size: large;
+}
+.lastdata{
+    margin-top: 20px;
+    font-size: 20pt;
+    /* color: #4C4C4C; */
+    /* text-align: center; */
+    font-family: sans-serif;
+}
+.zinan2{
+    position: fixed;
+    top: 0;
+    border-radius: 20px;
+    height: 8vh;
+    /* opacity: 0.5; */
+    background: rgb(92 92 92);
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.zinantext2{
+    display: flex;
+    text-align: center;
+    color: white;
+    position: absolute;
+    margin-top: 0.8em;
+    flex-direction: row;
+    align-content: center;
+    /* margin-left: 1em; */
+    font-size: large;
+    margin-right: 1em;
+}

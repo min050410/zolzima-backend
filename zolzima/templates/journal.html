@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='rank.css')}}" media='all'>
     <title>journal</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='mobile.css')}}" media='all'>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -104,29 +105,48 @@
                 </div>
             </header>
 
-            <!-- 일지 시작 -->
+            <!-- 일지 시작 수우우우웅우우정 -->
 
-            {% if clicked %}
-            <h1>{{clicked}}</h1>
-            {% endif %}
-            {% if todo_list %}
             <div>
-                <ul>
-                    {% for subject in todo_list %}
-                    {% if g.user %}
-                    <li><a href="{{url_for('main.detail', todo_id = subject.id, todo_Userid = g.user.id )}}"><button type="button" class="btn">{{ subject.subject }}</button></a></li>
-                    {% else %}
-                    <li><a href="#"><button type="button" class="btn">일지 기능을 사용하려면 로그인이 필요합니다.</button></a></li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
+                {% if todo_list %}
+                {% for subject in todo_list %}
+                {% if g.user %}
+                <a href="{{url_for('main.detail', todo_id = subject.id, todo_Userid = g.user.id )}}">
+                    <div class="zinan2">
+                        <span class="zinantext2">일지 쓰기</span>
+                    </div>
+                </a>
+                {% else %}
+                <a href="#">
+                    <div class="zinan2">
+                        <span class="zinantext2">일지 기능을 사용하려면 로그인이 필요합니다</span>
+                    </div>
+                </a>
+                {% endif %}
+                {% endfor %}
                 {% else %}
                 <p> 빈 값입니다. </p>
                 {% endif %}
             </div>
-            
-        </main>
-    </div>
+
+            <p class="lastdata">{{ g.user.username }} 님이 완료한 기록들</p>
+
+            <div class="zinan">
+                <span class="zinantext">시험지 불태우기</span>
+            </div>
+            <div class="zinan">
+                <span class="zinantext">비문학 기출 풀기</span>
+            </div>
+            <div class="zinan">
+                <span class="zinantext">물 1 rigidbody 까지</span>
+            </div>
+            <div class="zinan">
+                <span class="zinantext">수학 199쪽 복습</span>
+            </div>
+            <div class="zinan">
+                <span class="zinantext">happy coding</span>
+            </div>
+
 
 </body>
 
