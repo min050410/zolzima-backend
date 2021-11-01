@@ -14,7 +14,7 @@ bp = Blueprint('todo', __name__, url_prefix='/todo')
 def create(todo_id):
 #todo_Userid = g.user.id
 	form = TodoForm()
-	todo = Todo.query.get_or_404(todo_id and g.user.id)
+	todo = Todo.query.get_or_404(todo_id)  #and g.user.id
 	if form.validate_on_submit():
 		content = request.form['content']
 		a = Todo(content=content, create_date=datetime.now(), user=g.user) #user=g.user

@@ -1,0 +1,101 @@
+[33mcommit a279488c493484867262c958acbdb28380997d9a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: min050410 <min050410@gmail.com>
+Date:   Sun Oct 31 20:50:30 2021 +0900
+
+    nginx&gunicorn적용+domain
+
+[33mcommit 718f4e6fe0f6fe4251eeafbe9da787aa6e235a0e[m
+Author: min050410 <min050410@gmail.com>
+Date:   Thu Oct 28 17:21:35 2021 +0900
+
+    detail and rank rayout
+
+[33mcommit 701120250f99d30639c90de4bbe3c18fb5453279[m
+Author: min050410 <min050410@gmail.com>
+Date:   Sun Oct 24 21:23:36 2021 +0900
+
+    유저 공부 시간이 0일 때 rank가 안나오던 버그 수정
+
+[33mcommit 9544d75abcea7f610e7735d84fbe80c79e34e8fb[m
+Author: min050410 <min050410@gmail.com>
+Date:   Tue Oct 19 22:32:26 2021 +0900
+
+    User Post
+
+[33mcommit d0286410cc8396d454d5825a459a31877782bdfd[m
+Author: min050410 <min050410@gmail.com>
+Date:   Tue Oct 19 15:23:58 2021 +0900
+
+    rankjsUpdate
+
+[33mcommit ec0f2de1689f26f85ee34e32e4c31a1af90de563[m
+Author: min050410 <min050410@gmail.com>
+Date:   Tue Oct 19 12:25:39 2021 +0900
+
+    rank com
+
+[33mcommit 9cc42265f71264140a5d17196848dfc521198d34[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 18 20:40:03 2021 +0900
+
+    rankdict
+
+[33mcommit f9ef86b196fe681725eb2f3fc0a9f5828a5e3f7a[m
+Author: min050410 <min050410@gmail.com>
+Date:   Tue Oct 12 22:02:39 2021 +0900
+
+    버그수정+rank구현중
+
+[33mcommit 68e4c7c3a5a2e0c5d3f5ca07a83ad6e216668fd0[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 11 22:49:38 2021 +0900
+
+    10/11
+
+[33mcommit 2ca36b55b649a2acf1baace6b10b8d966f38151f[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 11 16:16:17 2021 +0900
+
+    document start시 타이머 보이기
+
+[33mcommit 3727cabd800cb970b74f41a7172c6f62649c9b0c[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 11 15:38:46 2021 +0900
+
+    유저별로 타이머 다르게 보임
+
+[33mcommit a11b09057d4a20fae40e55e4bbf4beb3cc8e7a99[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 11 12:34:20 2021 +0900
+
+    user_backref+Timedata
+
+[33mcommit f2d441ebbb616502f06adc98fb512e8814f8d535[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Oct 11 04:56:02 2021 +0900
+
+    user
+
+[33mcommit f48b9e5061fe3de6c218e833a2c93e6c3fbb1c20[m
+Author: min050410 <min050410@gmail.com>
+Date:   Fri Oct 8 09:44:09 2021 +0900
+
+    ajax 시간 데이터 보내기
+
+[33mcommit bba2cb18f96e89fc6af4b80503b8501c0a383071[m
+Author: min050410 <min050410@gmail.com>
+Date:   Thu Oct 7 08:04:45 2021 +0900
+
+    model 추가
+
+[33mcommit 8028bc11f4dad4115555a8c68d720aa935e7d2eb[m
+Author: min050410 <min050410@gmail.com>
+Date:   Wed Oct 6 22:30:40 2021 +0900
+
+    ajax 시스템 추가
+
+[33mcommit 030e36615e910c44b5debfc76e63c8f5abd6a31b[m
+Author: min050410 <min050410@gmail.com>
+Date:   Mon Sep 27 22:29:24 2021 +0900
+
+    1st server / complete migrate
