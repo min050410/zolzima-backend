@@ -10,6 +10,14 @@ import operator
 
 import json
 
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
 def sum(n): #가장 최근의 같은 유저 타이머를 찾아주는 함수
   for i in range(n,1,-1):
     if Timer.query.get(i).user:
@@ -138,8 +146,32 @@ def rankdata():
 			CurrentTime[j] = 0
 	CurrentTime=sorted(CurrentTime.items() ,key = operator.itemgetter(1), reverse = True)
 	json_val = json.dumps(CurrentTime)
-	return json_val  	
- 
+	return json_val  
+    
+@bp.route('/apidata', methods=['GET', 'POST'])
+def apidata():
+    #data = request.get_json()
+    req = request.get_json()
+    pre=req['data']
+    print(req['data'])
+    data_df = pd.read_csv('/home/min050410/webapp/ch02/zolzima/views/WholesalePrice_20210831.csv', header=0, encoding='cp949')
+    data_df_list = data_df['품목명']
+    tomato = data_df.loc[data_df['품목명'] == pre]
+    tomato = tomato.loc[tomato['등급명'] == '상품']
+    Y = tomato['평균가격']
+    X = tomato.drop(['품목명', '품종명', '평균가격', '등급명', '유통단계별무게', '유통단계별단위명'], axis=1, inplace=False)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
+    lr = LinearRegression()
+    lr.fit(X_train, Y_train)
+    Y_predict = lr.predict(X.tail(n=1))
+    
+    return str(Y_predict)
+
+@bp.route('/apitest', methods=['GET', 'POST'])
+def apitest():
+    req = request.get_json()
+    print(req)
+    return str(req['data'])
  
  
 
